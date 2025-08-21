@@ -3,3 +3,27 @@ img{
     width: 120px;
     height: auto;
 }
+
+#search-bar-container {
+    text-align: left;
+    margin: 20px;
+}
+
+#search-bar {
+    padding: 10px;
+    width: 300px;
+}
+
+.pm{
+    margin-left: px;
+    padding-left: 100px;
+}
+
+.pb{
+    border: 2px solid #333;
+  border-radius: 8px;   
+  background-color: yellowgreen;
+  padding: 15px;            
+  margin: 10px;            
+  width: fit-content; 
+}

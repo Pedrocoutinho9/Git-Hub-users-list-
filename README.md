@@ -1,22 +1,24 @@
-**Users List**
-
-# 👥 Users List
-
-Um projeto simples de lista de usuários construído com **React**, **JavaScript** e **HTML**.
-O objetivo é exibir, adicionar e gerenciar usuários de forma dinâmica, servindo como exemplo de CRUD básico em React.
 
 ---
 
-## 🚀 Tecnologias Utilizadas
+# 👥 Users List
+
+A simple user list project built with **React**, **JavaScript**, and **HTML**.
+The goal is to display users by consuming the **GitHub public API**, as well as allowing basic user management.
+
+---
+
+## 🚀 Technologies Used
 
 * [React](https://reactjs.org/)
 * JavaScript (ES6+)
 * HTML5
 * CSS3
+* [GitHub REST API](https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#list-users)
 
 ---
 
-## 📂 Estrutura do Projeto
+## 📂 Project Structure
 
 ```
 users-list/
@@ -35,59 +37,52 @@ users-list/
 
 ---
 
-## ⚙️ Funcionalidades
+## ⚙️ Features
 
-* ✅ Exibir lista de usuários
-* ✅ Adicionar novo usuário
-* ✅ Remover usuário
-* ✅ Interface simples e responsiva
+* ✅ Display a list of users via **GitHub API**
+* ✅ Show avatar, login, and GitHub profile link
+* ✅ Add new users manually
+* ✅ Remove users
+* ✅ Simple and responsive interface
 
 ---
 
-## 📦 Como Rodar o Projeto
+## 📦 How to Run the Project
 
-### 1. Clonar o repositório
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/seu-usuario/users-list.git
+git clone https://github.com/your-username/users-list.git
 cd users-list
 ```
 
-### 2. Instalar dependências
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Rodar o servidor de desenvolvimento
+### 3. Start the development server
 
 ```bash
 npm start
 ```
 
-O projeto estará rodando em: **[http://localhost:3000](http://localhost:3000)**
+The project will be running at: **[http://localhost:3000](http://localhost:3000)**
 
 ---
 
-## 🖼️ Exemplo de Tela
+## 🔮 Future Improvements
 
-*(adicione aqui um print do app rodando)*
-
----
-
-## 🔮 Melhorias Futuras
-
-* 🔍 Implementar busca por nome
-* ✏️ Editar informações do usuário
-* 🌐 Integração com API externa (ex: [Random User API](https://randomuser.me/))
+* 🔍 Implement user search by login
+* ✏️ Edit user information
+* 🌐 Pagination and more detailed data from GitHub API
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Este projeto está sob a licença MIT.
-Sinta-se livre para usar, modificar e compartilhar.
+This project is under the MIT license.
+Feel free to use, modify, and share.
 
 ---
-
-Quer que eu crie também um **exemplo básico de código (App.jsx + UserCard.jsx + UserForm.jsx)** para acompanhar esse README?

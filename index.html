@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="text-align: center; margin: 20px 0;">
+        <h1>
+            Welcome to your users list
+        </h1>
+    </div>
+
+
+    <div id="user-list"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const userListContainer = document.getElementById('user-list');
+            let users = [];
+            let currentIndex = 0;
+            const usersPerPage = 10;
+
+            const renderUsers = () => {
+                const endIndex = Math.min(currentIndex + usersPerPage, users.length);
+                for (let i = currentIndex; i < endIndex; i++) {
+                    const user = users[i];
+                    const userDiv = document.createElement('div');
+                    userDiv.style.display = 'flex';
+                    userDiv.style.alignItems = 'center';
+                    userDiv.style.marginBottom = '10px';
+
+                    const userImg = document.createElement('img');
+                    userImg.src = user.avatar_url;
+                    userImg.alt = user.login;
+                    userImg.width = 50;
+                    userImg.style.borderRadius = '50%';
+                    userImg.style.marginRight = '10px';
+
+                    const userName = document.createElement('p');
+                    userName.innerHTML = `<strong>Username:</strong> ${user.login}`;
+                    userName.style.margin = 0;
+
+                    userDiv.appendChild(userImg);
+                    userDiv.appendChild(userName);
+                    userListContainer.appendChild(userDiv);
+                }
+                currentIndex = endIndex;
+                if (currentIndex >= users.length) {
+                    document.getElementById('show-more-btn').style.display = 'none';
+                }
+            };
+
+            try {
+                const response = await fetch('https://api.github.com/users');
+                users = await response.json();
+                renderUsers();
+
+                const showMoreBtn = document.createElement('button');
+                showMoreBtn.id = 'show-more-btn';
+                showMoreBtn.textContent = 'Show More';
+                showMoreBtn.style.display = 'block';
+                showMoreBtn.style.margin = '20px auto';
+                showMoreBtn.style.padding = '10px 20px';
+                showMoreBtn.style.cursor = 'pointer';
+                showMoreBtn.addEventListener('click', renderUsers);
+                userListContainer.appendChild(showMoreBtn);
+            } catch (error) {
+                userListContainer.innerHTML = '<p>Failed to load users.</p>';
+            }
+        });
+    </script>
+
+</body>
+</html>

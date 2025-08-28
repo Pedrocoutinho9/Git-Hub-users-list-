@@ -1,109 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Users Lists</title>
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        #search-bar-container {
-            text-align: left;
-            margin: 20px;
-        }
-
-        #search-bar {
-            padding: 10px;
-            width: 300px;
-        }
-    </style>
+    <title>User List</title>
 
 </head>
 
 <body>
-    <div style="text-align: center; margin: 20px 0;">
-        <h1>
-            Welcome to your users list
-        </h1>
-    </div>
+    <aside>
+        <input type="text" id="search" placeholder="Search GitHub users">
+        <ul class="user-list"></ul>
+        <button id="loadMore">Load More</button>
+        <div class="error" id="listError"></div>
+    </aside>
+    <main>
+        <div class="details" id="userDetails"></div>
+        <div class="error" id="detailsError"></div>
+    </main>
 
-    <div id="search-bar-container"><input type="text" id="search-bar" placeholder="Search users..."></div>
-
-    <div class="pm; pb" id="user-list">
-    </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            const userListContainer = document.getElementById('user-list');
-            const searchBar = document.getElementById('search-bar');
-            let users = [];
-            let filteredUsers = [];
-            let currentIndex = 0;
-            const usersPerPage = 10;
-
-            const renderUsers = (reset = false) => {
-                if (reset) {
-                    userListContainer.innerHTML = '';
-                    currentIndex = 0;
-                }
-                const endIndex = Math.min(currentIndex + usersPerPage, filteredUsers.length);
-                for (let i = currentIndex; i < endIndex; i++) {
-                    const user = filteredUsers[i];
-                    const userDiv = document.createElement('div');
-                    userDiv.style.display = 'flex';
-                    userDiv.style.alignItems = 'center';
-                    userDiv.style.marginBottom = '10px';
-
-                    const userImg = document.createElement('img');
-                    userImg.src = user.avatar_url;
-                    userImg.alt = user.login;
-                    userImg.width = 50;
-                    userImg.style.borderRadius = '50%';
-                    userImg.style.marginRight = '10px';
-
-                    const userName = document.createElement('p');
-                    userName.innerHTML = ` ${user.login}`;
-                    userName.style.margin = 0;
-
-                    userDiv.appendChild(userImg);
-                    userDiv.appendChild(userName);
-                    userListContainer.appendChild(userDiv);
-                }
-                currentIndex = endIndex;
-                if (currentIndex >= filteredUsers.length) {
-                    const showMoreBtn = document.getElementById('show-more-btn');
-                    if (showMoreBtn) showMoreBtn.style.display = 'none';
-                }
-            };
-
-            const filterUsers = () => {
-                const query = searchBar.value.toLowerCase();
-                filteredUsers = users.filter(user => user.login.toLowerCase().includes(query));
-                renderUsers(true);
-            };
-
-            searchBar.addEventListener('input', filterUsers);
-
-            try {
-                const response = await fetch('https://api.github.com/users');
-                users = await response.json();
-                filteredUsers = users;
-                renderUsers();
-
-                const showMoreBtn = document.createElement('button');
-                showMoreBtn.id = 'show-more-btn';
-                showMoreBtn.textContent = 'Show More';
-                showMoreBtn.style.display = 'block';
-                showMoreBtn.style.margin = '20px auto';
-                showMoreBtn.style.padding = '10px 20px';
-                showMoreBtn.style.cursor = 'pointer';
-                showMoreBtn.addEventListener('click', () => renderUsers());
-                userListContainer.appendChild(showMoreBtn);
-            } catch (error) {
-                userListContainer.innerHTML = '<p>Failed to load users.</p>';
-            }
-        });
-    </script>
 
 </body>
 
